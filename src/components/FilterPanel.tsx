@@ -42,13 +42,13 @@ export const FilterPanel = ({ filters, onFiltersChange }: FilterPanelProps) => {
           <div>
             <Label className="text-sm font-medium text-gray-700">Cuisine Type</Label>
             <Select value={filters.cuisine} onValueChange={(value) => 
-              onFiltersChange({ ...filters, cuisine: value })
+              onFiltersChange({ ...filters, cuisine: value === "any" ? "" : value })
             }>
               <SelectTrigger className="mt-1 border-green-300 focus:border-green-500">
                 <SelectValue placeholder="Any cuisine" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any cuisine</SelectItem>
+                <SelectItem value="any">Any cuisine</SelectItem>
                 {cuisineTypes.map(cuisine => (
                   <SelectItem key={cuisine} value={cuisine}>{cuisine}</SelectItem>
                 ))}
@@ -78,13 +78,13 @@ export const FilterPanel = ({ filters, onFiltersChange }: FilterPanelProps) => {
           <div>
             <Label className="text-sm font-medium text-gray-700">Difficulty Level</Label>
             <Select value={filters.difficulty} onValueChange={(value) => 
-              onFiltersChange({ ...filters, difficulty: value })
+              onFiltersChange({ ...filters, difficulty: value === "any" ? "" : value })
             }>
               <SelectTrigger className="mt-1 border-green-300 focus:border-green-500">
                 <SelectValue placeholder="Any difficulty" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any difficulty</SelectItem>
+                <SelectItem value="any">Any difficulty</SelectItem>
                 <SelectItem value="Easy">Easy</SelectItem>
                 <SelectItem value="Medium">Medium</SelectItem>
                 <SelectItem value="Hard">Hard</SelectItem>
@@ -95,13 +95,13 @@ export const FilterPanel = ({ filters, onFiltersChange }: FilterPanelProps) => {
           <div>
             <Label className="text-sm font-medium text-gray-700">Cooking Time</Label>
             <Select value={filters.cookingTime} onValueChange={(value) => 
-              onFiltersChange({ ...filters, cookingTime: value })
+              onFiltersChange({ ...filters, cookingTime: value === "any" ? "" : value })
             }>
               <SelectTrigger className="mt-1 border-green-300 focus:border-green-500">
                 <SelectValue placeholder="Any time" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any time</SelectItem>
+                <SelectItem value="any">Any time</SelectItem>
                 <SelectItem value="15">Under 15 minutes</SelectItem>
                 <SelectItem value="30">Under 30 minutes</SelectItem>
                 <SelectItem value="60">Under 1 hour</SelectItem>

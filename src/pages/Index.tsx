@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,10 +14,10 @@ const Index = () => {
   const [generatedRecipe, setGeneratedRecipe] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [filters, setFilters] = useState({
-    cuisine: "",
+    cuisine: "any",
     dietary: [],
-    difficulty: "",
-    cookingTime: ""
+    difficulty: "any",
+    cookingTime: "any"
   });
 
   const handleGenerateRecipe = async () => {
@@ -29,7 +28,14 @@ const Index = () => {
     console.log("Applied filters:", filters);
     
     try {
-      const recipe = await generateRecipe(selectedIngredients, filters);
+      // Convert "any" values back to empty strings for the recipe generator
+      const processedFilters = {
+        cuisine: filters.cuisine === "any" ? "" : filters.cuisine,
+        dietary: filters.dietary,
+        difficulty: filters.difficulty === "any" ? "" : filters.difficulty,
+        cookingTime: filters.cookingTime === "any" ? "" : filters.cookingTime
+      };
+      const recipe = await generateRecipe(selectedIngredients, processedFilters);
       setGeneratedRecipe(recipe);
     } catch (error) {
       console.error("Error generating recipe:", error);
